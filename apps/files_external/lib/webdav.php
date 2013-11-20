@@ -323,11 +323,11 @@ class DAV extends \OC\Files\Storage\Common{
 	}
 
 	public function cleanPath($path) {
+		$path = \OC\Files\Filesystem::normalizePath($path);
 		if ( ! $path || $path[0]=='/') {
-			return substr($path, 1);
-		} else {
-			return $path;
+			$path = substr($path, 1);
 		}
+		return $path;
 	}
 
 	private function simpleResponse($method, $path, $body, $expected) {
